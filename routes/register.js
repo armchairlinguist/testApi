@@ -1,13 +1,11 @@
 var express = require('express');
 var router = express.Router();
-
 var log = require('../libs/log')(module);
-
 var db = require('../db/mongoose');
 var User = require('../model/user');
 
 router.post('/', function(req, res) {
-	
+	log.info("message", req.headers);
 	var user = new User({
 		name: req.body.name,
 		email: req.body.email,
@@ -19,7 +17,7 @@ router.post('/', function(req, res) {
 		if (!err) {
 			var token;
     		token = user.generateJwt();
-			log.info("New user created with id: %s", user.id);
+			log.info("New user created with id: %s", colors.green(user.id));
 			res.statusCode = 200;
 			return res.json({ 
 				token: token 
@@ -58,7 +56,7 @@ router.post('/', function(req, res) {
 					res.statusCode = 422;
 					res.json({ 
 						field: 'email',
-						message: 'User with this email is arleady registered' 
+						message: 'User with this email is already registered'
 					});
 					console.log("got email already");
 

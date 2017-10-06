@@ -1,6 +1,8 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
+var log = require('../libs/log')(module);
+
 var db = require('../db/mongoose');
 var User = require('../model/user');
 

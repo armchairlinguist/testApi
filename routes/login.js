@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-
 var log = require('../libs/log')(module);
 
 var passport = require('passport');
